@@ -1,5 +1,8 @@
 package com.dilemmawalker.advanced_jpa_mappings;
 
+import com.dilemmawalker.advanced_jpa_mappings.dao.AppDAO;
+import com.dilemmawalker.advanced_jpa_mappings.entity.Instructor;
+import com.dilemmawalker.advanced_jpa_mappings.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,9 +16,27 @@ public class AdvancedJpaMappingsApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args){
+	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
-			System.out.println("Hello World");
+			createInstructor(appDAO);
 		};
+	}
+
+	private void createInstructor(AppDAO appDAO){
+//		//create instructor
+//		Instructor instructor = new Instructor("Chad", "Darby", "darby@dilemmawalker.com");
+//
+//		//create instructor detail
+//		InstructorDetail instructorDetail = new InstructorDetail("http://randomlink", "crossing paths");
+
+
+		Instructor instructor = new Instructor("Madhu", "patel", "madhu@dilemmawalker.com");
+		InstructorDetail instructorDetail = new InstructorDetail("http://randomlink", "guitar");
+
+		//save instructor
+		System.out.println("instructor : "+ instructor);
+		System.out.println("instructor details : "+ instructorDetail);
+		appDAO.save(instructor);
+		System.out.println("done saving instructor & details");
 	}
 }
