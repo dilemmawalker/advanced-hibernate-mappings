@@ -19,7 +19,8 @@ public class AdvancedJpaMappingsApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
 //			createInstructor(appDAO);
-			findInstructor(appDAO);
+//			findInstructor(appDAO);
+			deleteInstructor(appDAO);
 		};
 	}
 
@@ -47,5 +48,11 @@ public class AdvancedJpaMappingsApplication {
 		Instructor instructor = appDAO.findInstructorById(id);
 		System.out.println("Instructor details: "+ instructor);
 		System.out.println("Instructor deeper details: "+ instructor.getInstructorDetail());
+	}
+
+	private void deleteInstructor(AppDAO appDAO){
+		int id=6;
+		appDAO.delete(id);
+		System.out.println("deleted the instructor with id: "+ id);
 	}
 }
