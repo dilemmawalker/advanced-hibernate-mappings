@@ -18,7 +18,8 @@ public class AdvancedJpaMappingsApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
-			createInstructor(appDAO);
+//			createInstructor(appDAO);
+			findInstructor(appDAO);
 		};
 	}
 
@@ -37,6 +38,14 @@ public class AdvancedJpaMappingsApplication {
 		System.out.println("instructor : "+ instructor);
 		System.out.println("instructor details : "+ instructorDetail);
 		appDAO.save(instructor);
+//		appDAO.save(instructorDetail);
 		System.out.println("done saving instructor & details");
+	}
+
+	private void findInstructor(AppDAO appDAO){
+		int id=8;
+		Instructor instructor = appDAO.findInstructorById(id);
+		System.out.println("Instructor details: "+ instructor);
+		System.out.println("Instructor deeper details: "+ instructor.getInstructorDetail());
 	}
 }
