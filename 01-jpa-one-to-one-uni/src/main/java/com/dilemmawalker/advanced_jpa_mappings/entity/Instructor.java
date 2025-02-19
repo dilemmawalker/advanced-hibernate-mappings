@@ -36,8 +36,11 @@ public class Instructor {
     @Column(name="email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="instructor_detail_id")
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="instructor_detail_id")
+//    private InstructorDetail instructorDetail;
+
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
     private InstructorDetail instructorDetail;
 
     public Instructor(String firstName, String lastName, String email){
