@@ -3,6 +3,9 @@ package com.dilemmawalker.advanced_jpa_mappings.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="instructor")
 @Getter
@@ -36,12 +39,29 @@ public class Instructor {
     @Column(name="email")
     private String email;
 
+    //This is one to one uni-directional type
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name="instructor_detail_id")
 //    private InstructorDetail instructorDetail;
 
     @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
     private InstructorDetail instructorDetail;
+
+
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Course> courses;
+
+    private List<Course> getCourses(){
+        return courses;
+    }
+
+    public void setCourses(Course tempCourse){
+        if(courses == null){
+            courses = new ArrayList<>();
+        }
+        courses.add(tempCourse);
+        tempCourse.setInstructor(this);
+    }
 
     public Instructor(String firstName, String lastName, String email){
         this.firstName = firstName;

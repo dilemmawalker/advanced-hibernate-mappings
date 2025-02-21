@@ -1,6 +1,7 @@
 package com.dilemmawalker.advanced_jpa_mappings;
 
 import com.dilemmawalker.advanced_jpa_mappings.dao.AppDAO;
+import com.dilemmawalker.advanced_jpa_mappings.entity.Course;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Instructor;
 import com.dilemmawalker.advanced_jpa_mappings.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +21,9 @@ public class AdvancedJpaMappingsApplication {
 		return runner -> {
 //			createInstructor(appDAO);
 //			findInstructor(appDAO);
-			deleteInstructor(appDAO);
+//			deleteInstructor(appDAO);
+			createInstructorWithCourses(appDAO);
+
 		};
 	}
 
@@ -33,7 +36,9 @@ public class AdvancedJpaMappingsApplication {
 
 
 		Instructor instructor = new Instructor("Madhu", "patel", "madhu@dilemmawalker.com");
-		InstructorDetail instructorDetail = new InstructorDetail("http://randomlink", "guitar");
+		InstructorDetail instructorDetail = new InstructorDetail("http://randomlink", "helloman");
+
+		instructor.setInstructorDetail(instructorDetail);
 
 		//save instructor
 		System.out.println("instructor : "+ instructor);
@@ -54,5 +59,22 @@ public class AdvancedJpaMappingsApplication {
 		int id=6;
 		appDAO.delete(id);
 		System.out.println("deleted the instructor with id: "+ id);
+	}
+
+	public void createInstructorWithCourses(AppDAO appDAO){
+		Instructor instructor = new Instructor("Susan", "public", "susan@dilemmawalker.com");
+		InstructorDetail instructorDetail = new InstructorDetail("http://randomlink", "harmony");
+
+		instructor.setInstructorDetail(instructorDetail);
+
+		Course course1 = new Course("hello");
+		Course course2 = new Course("pin");
+
+		instructor.setCourses(course1);
+		instructor.setCourses(course2);
+
+		appDAO.save(instructor);
+
+		System.out.println("instructor here: "+ instructor);
 	}
 }
