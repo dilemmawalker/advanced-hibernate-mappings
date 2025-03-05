@@ -67,8 +67,8 @@ public class AdvancedJpaMappingsApplication {
 
 		instructor.setInstructorDetail(instructorDetail);
 
-		Course course1 = new Course("hello");
-		Course course2 = new Course("pin");
+		Course course1 = new Course("no3");
+		Course course2 = new Course("no4");
 
 		instructor.setCourses(course1);
 		instructor.setCourses(course2);
@@ -76,5 +76,6 @@ public class AdvancedJpaMappingsApplication {
 		appDAO.save(instructor);
 
 		System.out.println("instructor here: "+ instructor);
+		System.out.println("the courses: "+ instructor.getCourses());
 	}
 }
