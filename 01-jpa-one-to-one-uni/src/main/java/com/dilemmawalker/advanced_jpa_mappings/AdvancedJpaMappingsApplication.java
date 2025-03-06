@@ -22,9 +22,22 @@ public class AdvancedJpaMappingsApplication {
 //			createInstructor(appDAO);
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
-			createInstructorWithCourses(appDAO);
+//			createInstructorWithCourses(appDAO);
+			findInstructorWithCourse(appDAO);
 
 		};
+	}
+
+	private void findInstructorWithCourse(AppDAO appDAO) {
+
+		int id = 1;
+		System.out.println("Finding the instructor id: "+ id);
+
+		Instructor instructor = appDAO.findInstructorById(id);
+
+		System.out.println("instructor: "+ instructor);
+		System.out.println("associated courses: "+ instructor.getCourses());
+		System.out.println("done!");
 	}
 
 	private void createInstructor(AppDAO appDAO){
@@ -67,8 +80,8 @@ public class AdvancedJpaMappingsApplication {
 
 		instructor.setInstructorDetail(instructorDetail);
 
-		Course course1 = new Course("no11");
-		Course course2 = new Course("no12");
+		Course course1 = new Course("no13");
+		Course course2 = new Course("no14");
 
 		instructor.setCourses(course1);
 		instructor.setCourses(course2);
