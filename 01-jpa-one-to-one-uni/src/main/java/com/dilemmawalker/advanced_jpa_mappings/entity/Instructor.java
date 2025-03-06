@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name="instructor")
 @Getter
 @Setter
-@ToString
+//@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Instructor {
@@ -44,16 +44,14 @@ public class Instructor {
 //    @JoinColumn(name="instructor_detail_id")
 //    private InstructorDetail instructorDetail;
 
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="instructor_detail_id")
     private InstructorDetail instructorDetail;
 
 
+    @Getter
     @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
-
-    private List<Course> getCourses(){
-        return courses;
-    }
 
     public void setCourses(Course tempCourse){
         if(courses == null){

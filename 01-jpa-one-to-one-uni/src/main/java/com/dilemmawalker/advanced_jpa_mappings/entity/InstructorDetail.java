@@ -7,7 +7,7 @@ import lombok.*;
 @Table(name="instructor_detail")
 @Getter
 @Setter
-@ToString
+//@ToString(exclude = "instructor")
 @NoArgsConstructor
 @AllArgsConstructor
 public class InstructorDetail {
@@ -31,7 +31,7 @@ public class InstructorDetail {
     @Column(name="hobby")
     private String hobby;
 
-    @OneToOne(mappedBy = "instructorDetail")
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
     private Instructor instructor;
 
 

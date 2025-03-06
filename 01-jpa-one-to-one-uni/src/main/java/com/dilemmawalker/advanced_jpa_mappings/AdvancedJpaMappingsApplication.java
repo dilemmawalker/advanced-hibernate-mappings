@@ -67,8 +67,8 @@ public class AdvancedJpaMappingsApplication {
 
 		instructor.setInstructorDetail(instructorDetail);
 
-		Course course1 = new Course("no3");
-		Course course2 = new Course("no4");
+		Course course1 = new Course("no11");
+		Course course2 = new Course("no12");
 
 		instructor.setCourses(course1);
 		instructor.setCourses(course2);
