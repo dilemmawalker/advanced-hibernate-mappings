@@ -28,9 +28,33 @@ public class AdvancedJpaMappingsApplication {
 //			deleteInstructor(appDAO);
 //			createInstructorWithCourses(appDAO);
 //			findInstructorWithCourse(appDAO);
-			findCoursesForInstructor(appDAO);
+//			findCoursesForInstructor(appDAO);
+//			updateInstructor(appDAO);
+			updateCourse(appDAO);
 
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int courseId=10;
+
+		Course course = appDAO.findCourseById(courseId);
+		course.setTitle("Enjoy simple things");
+
+		appDAO.update(course);
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+		int id = 1;
+		//find instructor
+		Instructor instructor = appDAO.findInstructorById(id);
+
+		//update instructor
+		instructor.setLastName("TESTER");
+		System.out.println("updated instructor:" + instructor);
+
+		appDAO.update(instructor);
+		System.out.println("Done!");
 	}
 
 	private void findCoursesForInstructor(AppDAO appDAO) {
