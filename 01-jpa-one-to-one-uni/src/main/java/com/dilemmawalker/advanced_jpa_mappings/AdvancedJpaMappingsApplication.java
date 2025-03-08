@@ -4,10 +4,14 @@ import com.dilemmawalker.advanced_jpa_mappings.dao.AppDAO;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Course;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Instructor;
 import com.dilemmawalker.advanced_jpa_mappings.entity.InstructorDetail;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class AdvancedJpaMappingsApplication {
@@ -23,9 +27,28 @@ public class AdvancedJpaMappingsApplication {
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 //			createInstructorWithCourses(appDAO);
-			findInstructorWithCourse(appDAO);
+//			findInstructorWithCourse(appDAO);
+			findCoursesForInstructor(appDAO);
 
 		};
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int id=1;
+
+		System.out.println("Finding instructor id: "+ id );
+
+		Instructor instructor = appDAO.findInstructorById(id);
+		System.out.println("Instructor: "+ instructor);
+
+		List<Course> courses = appDAO.findCoursesByInstructorId(id);
+		System.out.println("List of courses: "+ courses);
+//		for(Course singleCourse: courses)
+		instructor.setCourses(courses);
+		System.out.println("Courses set ");
+
+		System.out.println("associated courses: "+ instructor.getCourses());
+		System.out.println("Done!");
 	}
 
 	private void findInstructorWithCourse(AppDAO appDAO) {
@@ -82,9 +105,11 @@ public class AdvancedJpaMappingsApplication {
 
 		Course course1 = new Course("no13");
 		Course course2 = new Course("no14");
+		List<Course> list = new ArrayList<>();
+		list.add(course1);list.add(course2);
 
-		instructor.setCourses(course1);
-		instructor.setCourses(course2);
+		instructor.setCourses(list);
+//		instructor.setCourses(course2);
 
 		appDAO.save(instructor);
 

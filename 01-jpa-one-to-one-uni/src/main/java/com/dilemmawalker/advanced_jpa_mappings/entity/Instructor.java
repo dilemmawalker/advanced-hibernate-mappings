@@ -50,16 +50,16 @@ public class Instructor {
 
 
     @Getter
-    @OneToMany(mappedBy = "instructor", fetch = FetchType.EAGER,
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, //by default for @OneToMany it's lazy only
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
 
-    public void setCourses(Course tempCourse){
-        if(courses == null){
-            courses = new ArrayList<>();
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+
+        for (Course course : courses) {
+            course.setInstructor(this);  // Ensure bidirectional mapping
         }
-        courses.add(tempCourse);
-        tempCourse.setInstructor(this);
     }
 
     public Instructor(String firstName, String lastName, String email){

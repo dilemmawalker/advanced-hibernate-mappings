@@ -1,6 +1,9 @@
 package com.dilemmawalker.advanced_jpa_mappings.dao;
 
+import com.dilemmawalker.advanced_jpa_mappings.entity.Course;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Instructor;
+
+import java.util.List;
 
 public interface AppDAO {
 
@@ -9,4 +12,6 @@ public interface AppDAO {
     Instructor findInstructorById(int id);
 
     void delete(int id);
+
+    List<Course> findCoursesByInstructorId(int id);
 }
