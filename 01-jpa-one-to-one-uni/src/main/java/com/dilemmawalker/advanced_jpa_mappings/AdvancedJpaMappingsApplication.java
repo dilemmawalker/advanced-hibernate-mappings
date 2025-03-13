@@ -4,7 +4,6 @@ import com.dilemmawalker.advanced_jpa_mappings.dao.AppDAO;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Course;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Instructor;
 import com.dilemmawalker.advanced_jpa_mappings.entity.InstructorDetail;
-import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,7 +29,8 @@ public class AdvancedJpaMappingsApplication {
 //			findInstructorWithCourse(appDAO);
 //			findCoursesForInstructor(appDAO);
 //			updateInstructor(appDAO);
-			updateCourse(appDAO);
+//			updateCourse(appDAO);
+			deleteInstructor(appDAO);
 
 		};
 	}
@@ -116,8 +116,8 @@ public class AdvancedJpaMappingsApplication {
 	}
 
 	private void deleteInstructor(AppDAO appDAO){
-		int id=6;
-		appDAO.delete(id);
+		int id=19;
+		appDAO.deleteInstructorById(id);
 		System.out.println("deleted the instructor with id: "+ id);
 	}
 

@@ -50,7 +50,7 @@ public class Instructor {
 
 
     @Getter
-    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, //by default for @OneToMany it's lazy only
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.EAGER, //by default for @OneToMany it's lazy only
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
 
