@@ -33,9 +33,22 @@ public class AdvancedJpaMappingsApplication {
 //			updateCourse(appDAO);
 //			deleteInstructor(appDAO);
 //			deleteCourse(appDAO); // -> not getting deleted!!!
-			createCourseAndReviews(appDAO);
+//			createCourseAndReviews(appDAO);
+			retrieveCourseAndReviews(appDAO);
 
 		};
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+		//get the course & reviews
+		int id = 10;
+		Course course = appDAO.findCourseAndReviewsByCourseId(id);
+
+		//print the course
+		System.out.println("course is: "+ course);
+
+		//print the reviews
+		System.out.println("reviews is: "+ course.getReviews());
 	}
 
 	private void createCourseAndReviews(AppDAO appDAO) {
