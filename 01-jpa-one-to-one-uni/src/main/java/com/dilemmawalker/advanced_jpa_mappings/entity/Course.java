@@ -3,6 +3,9 @@ package com.dilemmawalker.advanced_jpa_mappings.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "course")
 @NoArgsConstructor
@@ -26,5 +29,17 @@ public class Course {
 
     public Course(String title) {
         this.title = title;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
+
+    public void add(Review review){
+        if(reviews == null){
+            reviews = new ArrayList<>();
+        }
+
+        reviews.add(review);
     }
 }

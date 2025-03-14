@@ -4,6 +4,7 @@ import com.dilemmawalker.advanced_jpa_mappings.dao.AppDAO;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Course;
 import com.dilemmawalker.advanced_jpa_mappings.entity.Instructor;
 import com.dilemmawalker.advanced_jpa_mappings.entity.InstructorDetail;
+import com.dilemmawalker.advanced_jpa_mappings.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,9 +32,23 @@ public class AdvancedJpaMappingsApplication {
 //			updateInstructor(appDAO);
 //			updateCourse(appDAO);
 //			deleteInstructor(appDAO);
-			deleteCourse(appDAO); // -> not getting deleted!!!
+//			deleteCourse(appDAO); // -> not getting deleted!!!
+			createCourseAndReviews(appDAO);
 
 		};
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		//create course
+		Course course = new Course("New game");
+
+		//add reviews
+		course.add(new Review("great course 111"));
+		course.add(new Review("excellent course 444"));
+
+		//save course
+		appDAO.save(course);
+		System.out.println("Doneee!");
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
