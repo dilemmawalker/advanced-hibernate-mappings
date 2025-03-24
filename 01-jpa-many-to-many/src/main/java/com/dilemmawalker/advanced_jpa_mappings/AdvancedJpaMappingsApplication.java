@@ -23,19 +23,7 @@ public class AdvancedJpaMappingsApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
-//			createInstructor(appDAO);
-//			findInstructor(appDAO);
-//			deleteInstructor(appDAO);
-//			createInstructorWithCourses(appDAO);
-//			findInstructorWithCourse(appDAO);
-//			findCoursesForInstructor(appDAO);
-//			updateInstructor(appDAO);
-//			updateCourse(appDAO);
-//			deleteInstructor(appDAO);
-//			deleteCourse(appDAO); // -> not getting deleted!!!
-//			createCourseAndReviews(appDAO);
-//			retrieveCourseAndReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+
 
 		};
 	}
