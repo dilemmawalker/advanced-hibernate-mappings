@@ -35,7 +35,7 @@ public class AdvancedJpaMappingsApplication {
 //			deleteCourse(appDAO); // -> not getting deleted!!!
 //			createCourseAndReviews(appDAO);
 //			retrieveCourseAndReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+//			deleteCourseAndReviews(appDAO);
 
 		};
 	}
