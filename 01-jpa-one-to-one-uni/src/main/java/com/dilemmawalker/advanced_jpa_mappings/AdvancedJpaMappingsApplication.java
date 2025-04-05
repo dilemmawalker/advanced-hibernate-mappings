@@ -1,10 +1,7 @@
 package com.dilemmawalker.advanced_jpa_mappings;
 
 import com.dilemmawalker.advanced_jpa_mappings.dao.AppDAO;
-import com.dilemmawalker.advanced_jpa_mappings.entity.Course;
-import com.dilemmawalker.advanced_jpa_mappings.entity.Instructor;
-import com.dilemmawalker.advanced_jpa_mappings.entity.InstructorDetail;
-import com.dilemmawalker.advanced_jpa_mappings.entity.Review;
+import com.dilemmawalker.advanced_jpa_mappings.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,7 +25,7 @@ public class AdvancedJpaMappingsApplication {
 //			deleteInstructor(appDAO);
 //			createInstructorWithCourses(appDAO);
 //			findInstructorWithCourse(appDAO);
-//			findCoursesForInstructor(appDAO);
+			findCoursesForInstructor(appDAO);
 //			updateInstructor(appDAO);
 //			updateCourse(appDAO);
 //			deleteInstructor(appDAO);
@@ -37,7 +34,29 @@ public class AdvancedJpaMappingsApplication {
 //			retrieveCourseAndReviews(appDAO);
 //			deleteCourseAndReviews(appDAO);
 
+			createCourseAndStudents(appDAO);
+
 		};
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		//create a course
+		Course course = new Course("Pacmannnn");
+
+		//create students
+		Student temp1 = new Student("Johnnn", "Doggy", "dfhdhfduhf@emaiol.com");
+		Student temp2 = new Student("Nancy", "Doggy", "dfhdhfduhf@emaiol.com");
+
+		//add students to course
+		course.addStudent(temp1);
+		course.addStudent(temp1);
+
+		//save the course & students
+		System.out.println("saving course :"+ course);
+		System.out.println("saving course :"+ course.getStudents());
+
+		appDAO.save(course);
+
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
